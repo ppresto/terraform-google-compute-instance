@@ -1,10 +1,19 @@
 variable "region" {
-  default = "us-east1"
+  default = "us-west1"
 }
 
-variable "count" {}
-variable "name_prefix" {}
-variable "machine_type" {}
+variable "count" {
+  default = 1
+}
+
+variable "name_prefix" {
+  default = "ppresto"
+}
+
+variable "machine_type" {
+  default = "n1-standard-1"
+}
+
 variable "user_data" {
   default = ""
 }
@@ -13,10 +22,9 @@ variable "disk_type" {
   default = "pd-ssd"
 }
 
-variable "disk_size" {}
-variable "disk_image" {}
-
-variable "subnetwork" {}
+variable "disk_size" {
+  default = 10
+}
 
 variable "startup_script" {
   default = <<EOF

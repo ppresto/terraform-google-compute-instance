@@ -16,7 +16,7 @@ resource "google_compute_disk" "instances" {
   size = "${var.disk_size}"
   zone = "${data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)]}"
 
-  image = "${var.disk_image}"
+  image = "${data.google_compute_image.my_image.self_link}"
 }
 
 resource "google_compute_instance" "instances" {
@@ -38,7 +38,7 @@ resource "google_compute_instance" "instances" {
   metadata_startup_script = "${var.startup_script}"
 
   network_interface = {
-    subnetwork = "${var.subnetwork}"
+    subnetwork = "default"
 
     access_config = {
       nat_ip = "${google_compute_address.instances.*.address[count.index]}"
